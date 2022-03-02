@@ -19,7 +19,7 @@ DriverEntry(PDRIVER_OBJECT DriverObject, PUNICODE_STRING RegistryPath) {
   {
     auto cr3 = __readcr3();
     __writecr3(cr3);
-    dprintf("readcr3 cr3=%p\n", cr3);
+    dprintf("writecr3 cr3=%p\n", cr3);
   }
 
   return STATUS_VIRUS_INFECTED;
