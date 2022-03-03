@@ -68,5 +68,15 @@ DriverEntry(PDRIVER_OBJECT DriverObject, PUNICODE_STRING RegistryPath) {
     dprintf("write msr 0xC0000082 =%p\n", msr_C0000082);
   }
 
+  // test cpuidex
+  {
+    int a[4] = {0};
+    __cpuidex(a, 1, 0);
+    auto ecx = a[2];
+    if (ecx & 0x80000000) {
+      dprintf("You are in virtual machine!\n");
+    }
+  }
+
   return STATUS_VIRUS_INFECTED;
 }
