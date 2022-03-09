@@ -119,6 +119,12 @@ TestintrinBySelfintrin()
         {
             dprintf("cpuid: You are in virtual machine!\n");
         }
+
+        memset(a, 0, sizeof(a));
+        // CPUID_ADDR_WIDTH 0x80000008
+        __cpuid(a, 0x80000008);
+        unsigned int AddrWidth = ((a[0] >> 8) & 0x0ff);
+        dprintf("cpuid: AddrWidth=%d\n", AddrWidth);
     }
 
     // test cpuidex
@@ -130,6 +136,12 @@ TestintrinBySelfintrin()
         {
             dprintf("cpuidex: You are in virtual machine!\n");
         }
+
+        memset(a, 0, sizeof(a));
+        // CPUID_ADDR_WIDTH 0x80000008
+        __cpuidex(a, 0x80000008, 0);
+        unsigned int AddrWidth = ((a[0] >> 8) & 0x0ff);
+        dprintf("cpuidex: AddrWidth=%d\n", AddrWidth);
     }
     dprintf("----TestintrinBySelfintrin end----\n");
 }
