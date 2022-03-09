@@ -66,6 +66,14 @@ void
 __writemsr(unsigned long Register, unsigned __int64 Value);
 
 EXTERN_C
+unsigned int
+_xbegin();
+
+EXTERN_C
+unsigned int
+_xend();
+
+EXTERN_C
 void
 TestintrinBySelfintrin()
 {
@@ -177,5 +185,20 @@ TestintrinBySelfintrin()
         unsigned int AddrWidth = ((a[0] >> 8) & 0x0ff);
         dprintf("cpuidex: AddrWidth=%d\n", AddrWidth);
     }
+
+    // test xbeign/xend
+    {
+        dprintf("test xbeign/xend\n");
+        __try
+        {
+            _xbegin();
+            _xend();
+        }
+        __except (1)
+        {
+            dprintf("test xbeign/xend goto except handler\n");
+        }
+    }
+
     dprintf("----TestintrinBySelfintrin end----\n");
 }

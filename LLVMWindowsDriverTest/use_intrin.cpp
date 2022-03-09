@@ -118,5 +118,20 @@ TestintrinByUseintrin()
         unsigned int AddrWidth = ((a[0] >> 8) & 0x0ff);
         dprintf("cpuidex: AddrWidth=%d\n", AddrWidth);
     }
+
+    // test xbeign/xend
+    {
+        dprintf("test xbeign/xend\n");
+        __try
+        {
+            _xbegin();
+            _xend();
+        }
+        __except (1)
+        {
+            dprintf("test xbeign/xend goto except handler\n");
+        }
+    }
+
     dprintf("----TestintrinByUseintrin end----\n");
 }
