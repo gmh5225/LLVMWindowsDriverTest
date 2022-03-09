@@ -38,6 +38,24 @@ TestintrinByUseintrin()
         dprintf("writecr3 cr3=%p\n", cr3);
     }
 
+    // test cr4
+    {
+        auto cr4 = __readcr4();
+        dprintf("readcr4 cr4=%p\n", cr4);
+        __writecr4(cr4);
+        cr4 = __readcr4();
+        dprintf("writecr4 cr4=%p\n", cr4);
+    }
+
+    // test cr8
+    {
+        auto cr8 = __readcr8();
+        dprintf("readcr8 cr8=%p\n", cr8);
+        __writecr8(cr8);
+        cr8 = __readcr8();
+        dprintf("writecr8 cr8=%p\n", cr8);
+    }
+
     // test dr
     {
         auto dr0 = __readdr(0);

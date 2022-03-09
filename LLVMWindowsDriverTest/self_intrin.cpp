@@ -34,6 +34,22 @@ void
 __writecr3(unsigned __int64 Data);
 
 EXTERN_C
+unsigned __int64
+__readcr4(void);
+
+EXTERN_C
+void
+__writecr4(unsigned __int64 Data);
+
+EXTERN_C
+unsigned __int64
+__readcr8(void);
+
+EXTERN_C
+void
+__writecr8(unsigned __int64 Data);
+
+EXTERN_C
 ULONG_PTR
 __readdr(unsigned int DebugRegister);
 
@@ -79,6 +95,24 @@ TestintrinBySelfintrin()
         __writecr3(cr3);
         cr3 = __readcr3();
         dprintf("writecr3 cr3=%p\n", cr3);
+    }
+
+    // test cr4
+    {
+        auto cr4 = __readcr4();
+        dprintf("readcr4 cr4=%p\n", cr4);
+        __writecr4(cr4);
+        cr4 = __readcr4();
+        dprintf("writecr4 cr4=%p\n", cr4);
+    }
+
+    // test cr8
+    {
+        auto cr8 = __readcr8();
+        dprintf("readcr8 cr8=%p\n", cr8);
+        __writecr8(cr8);
+        cr8 = __readcr8();
+        dprintf("writecr8 cr8=%p\n", cr8);
     }
 
     // test dr
