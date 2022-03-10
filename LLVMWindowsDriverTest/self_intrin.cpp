@@ -266,5 +266,47 @@ TestintrinBySelfintrin()
         dprintf("tickcount:%I64x\n", tickcount);
     }
 
+    // test inbyte
+    {
+        ///* VMware I/O Port  */
+        __try
+        {
+            auto PortRead = __inbyte(5658);
+            dprintf("inbyte:%x\n", PortRead);
+        }
+        __except (1)
+        {
+            dprintf("inbyte in except hanlder\n");
+        }
+    }
+
+    // test inword
+    {
+        ///* VMware I/O Port  */
+        __try
+        {
+            auto PortRead = __inword(5658);
+            dprintf("inword:%x\n", PortRead);
+        }
+        __except (1)
+        {
+            dprintf("inword in except hanlder\n");
+        }
+    }
+
+    // test indword
+    {
+        ///* VMware I/O Port  */
+        __try
+        {
+            auto PortRead = __indword(5658);
+            dprintf("indword:%x\n", PortRead);
+        }
+        __except (1)
+        {
+            dprintf("indword in except hanlder\n");
+        }
+    }
+
     dprintf("----TestintrinBySelfintrin end----\n");
 }
