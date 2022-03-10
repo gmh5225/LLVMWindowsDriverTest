@@ -79,6 +79,10 @@ __rdtscp(unsigned int *AUX);
 
 EXTERN_C
 void
+__invlpg(void *Address);
+
+EXTERN_C
+void
 TestintrinBySelfintrin()
 {
     dprintf("----TestintrinBySelfintrin begin----\n");
@@ -306,6 +310,25 @@ TestintrinBySelfintrin()
         {
             dprintf("indword in except hanlder\n");
         }
+    }
+
+    // test invlpg
+    {
+        auto mem = ExAllocatePool(NonPagedPool, 0x1000);
+        if (mem)
+        {
+            __invlpg(mem);
+            dprintf("__invlpg addr=%p\n", mem);
+            ExFreePool(mem);
+        }
+    }
+
+    // test inbytestring
+    {
+        ///* VMware I/O Port  */
+        char buf[100] = {0};
+        __inbytestring(5658, (PUCHAR)buf, sizeof(buf));
+        dprintf("buf=%s\n", buf);
     }
 
     dprintf("----TestintrinBySelfintrin end----\n");

@@ -237,5 +237,24 @@ TestintrinByUseintrin()
         }
     }
 
+    // test invlpg
+    {
+        auto mem = ExAllocatePool(NonPagedPool, 0x1000);
+        if (mem)
+        {
+            __invlpg(mem);
+            dprintf("__invlpg addr=%p\n", mem);
+            ExFreePool(mem);
+        }
+    }
+
+    // test inbytestring
+    {
+        ///* VMware I/O Port  */
+        char buf[100] = {0};
+        __inbytestring(5658, (PUCHAR)buf, sizeof(buf));
+        dprintf("buf=%s\n", buf);
+    }
+
     dprintf("----TestintrinByUseintrin end----\n");
 }
