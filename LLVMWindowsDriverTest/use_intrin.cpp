@@ -48,6 +48,7 @@ TestintrinByUseintrin()
     }
 
     // test cr8
+#ifdef _WIN64
     {
         auto cr8 = __readcr8();
         dprintf("readcr8 cr8=%p\n", cr8);
@@ -55,6 +56,7 @@ TestintrinByUseintrin()
         cr8 = __readcr8();
         dprintf("writecr8 cr8=%p\n", cr8);
     }
+#endif
 
     // test dr
     {
@@ -132,6 +134,52 @@ TestintrinByUseintrin()
             dprintf("test xbeign/xend goto except handler\n");
         }
     }
+
+    // test stosb
+    {
+        unsigned char c = 0x40; /* '@' character */
+        unsigned char s[] = "*********************************";
+
+        dprintf("%s\n", s);
+        __stosb((unsigned char *)s + 1, c, 6);
+        dprintf("%s\n", s);
+        //*********************************
+        //*@@@@@@**************************
+    }
+
+    // test stosw
+    {
+        unsigned short val = 128;
+        unsigned short a[100];
+        memset(a, 0, sizeof(a));
+        __stosw(a + 10, val, 2);
+        dprintf("%u %u %u %u\n", a[9], a[10], a[11], a[12]);
+        // 0 128 128 0
+    }
+
+    // test stosd
+    {
+        unsigned long val = 99999;
+        unsigned long a[10];
+
+        memset(a, 0, sizeof(a));
+        __stosd(a + 1, val, 2);
+
+        dprintf("%u %u %u %u\n", a[0], a[1], a[2], a[3]);
+        // 0 99999 99999 0
+    }
+
+#ifdef _WIN64
+    // test stosq
+    {
+        unsigned __int64 val = 0xFFFFFFFFFFFFI64;
+        unsigned __int64 a[10];
+        memset(a, 0, sizeof(a));
+        __stosq(a + 1, val, 2);
+        dprintf("%I64x %I64x %I64x %I64x\n", a[0], a[1], a[2], a[3]);
+        // 0 ffffffffffff ffffffffffff 0
+    }
+#endif
 
     dprintf("----TestintrinByUseintrin end----\n");
 }
