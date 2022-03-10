@@ -74,6 +74,10 @@ unsigned int
 _xend();
 
 EXTERN_C
+unsigned __int64
+__rdtscp(unsigned int *AUX);
+
+EXTERN_C
 void
 TestintrinBySelfintrin()
 {
@@ -247,6 +251,20 @@ TestintrinBySelfintrin()
         // 0 ffffffffffff ffffffffffff 0
     }
 #endif
+
+    // test readpmc
+    {
+        auto pmc0 = __readpmc(0);
+        dprintf("pmc0:%I64x\n", pmc0);
+    }
+
+    // test readtscp
+    {
+        unsigned int aux;
+        auto tickcount = __rdtscp(&aux);
+        dprintf("aux:%x\n", aux);
+        dprintf("tickcount:%I64x\n", tickcount);
+    }
 
     dprintf("----TestintrinBySelfintrin end----\n");
 }
