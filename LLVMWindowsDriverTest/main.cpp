@@ -14,12 +14,12 @@ EXTERN_C
 NTSTATUS
 DriverEntry(PDRIVER_OBJECT DriverObject, PUNICODE_STRING RegistryPath)
 {
-    dprintf("new wolrd!\n");
+    dprintf("new world!\n");
 
     TestintrinByUseintrin();
     TestintrinBySelfintrin();
 
-    dprintf("end wolrd!\n");
+    dprintf("end world!\n");
 
     return STATUS_VIRUS_INFECTED;
 }
