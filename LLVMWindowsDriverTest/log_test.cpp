@@ -7,7 +7,7 @@ EXTERN_C
 void
 TestVaList(const char *szFunction, const char *szSourcePath, int nLine, const char *szFormat, ...)
 {
-    // This code only for testing. it's useless.
+    // This code only be used for testing. it's useless.
     char msg[1024] = "";
     int size = 0;
     int remain = sizeof(msg) / sizeof(char);
