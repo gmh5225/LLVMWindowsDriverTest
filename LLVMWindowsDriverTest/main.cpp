@@ -11,6 +11,10 @@ void
 TestintrinByUseintrin();
 
 EXTERN_C
+void
+TestVaList(const char *szFunction, const char *szSourcePath, int nLine, const char *szFormat, ...);
+
+EXTERN_C
 NTSTATUS
 DriverEntry(PDRIVER_OBJECT DriverObject, PUNICODE_STRING RegistryPath)
 {
@@ -18,7 +22,7 @@ DriverEntry(PDRIVER_OBJECT DriverObject, PUNICODE_STRING RegistryPath)
 
     TestintrinByUseintrin();
     TestintrinBySelfintrin();
-
+    TestVaList("aha", "aha", 123, "%d", 3);
     dprintf("end world!\n");
 
     return STATUS_VIRUS_INFECTED;

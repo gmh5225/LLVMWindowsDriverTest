@@ -289,6 +289,7 @@
     <FilesToPackage Include="$(TargetPath)" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="log_test.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="self_intrin.cpp" />
     <ClCompile Include="use_intrin.cpp" />
