@@ -256,5 +256,13 @@ TestintrinByUseintrin()
         dprintf("buf=%s\n", buf);
     }
 
+    // test cti/sti
+    {
+        dprintf("test cti/sti begin\n");
+        _disable();
+        _enable();
+        dprintf("test cti/sti end\n");
+    }
+
     dprintf("----TestintrinByUseintrin end----\n");
 }

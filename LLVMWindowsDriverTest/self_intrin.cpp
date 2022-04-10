@@ -83,6 +83,14 @@ __invlpg(void *Address);
 
 EXTERN_C
 void
+_disable(void);
+
+EXTERN_C
+void
+_enable(void);
+
+EXTERN_C
+void
 TestintrinBySelfintrin()
 {
     dprintf("----TestintrinBySelfintrin begin----\n");
@@ -329,6 +337,14 @@ TestintrinBySelfintrin()
         char buf[100] = {0};
         __inbytestring(5658, (PUCHAR)buf, sizeof(buf));
         dprintf("buf=%s\n", buf);
+    }
+
+    // test cti/sti
+    {
+        dprintf("test cti/sti begin\n");
+        _disable();
+        _enable();
+        dprintf("test cti/sti end\n");
     }
 
     dprintf("----TestintrinBySelfintrin end----\n");

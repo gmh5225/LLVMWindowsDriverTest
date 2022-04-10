@@ -19,4 +19,5 @@ TestVaList(const char *szFunction, const char *szSourcePath, int nLine, const ch
     va_start(v1, szFormat);
     va_end(v1);
     dprintf(msg);
+    dprintf("\n");
 }
