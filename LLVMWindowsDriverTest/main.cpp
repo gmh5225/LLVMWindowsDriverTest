@@ -23,6 +23,10 @@ void
 TestDiv();
 
 EXTERN_C
+void
+TestInlineAsm();
+
+EXTERN_C
 NTSTATUS
 DriverEntry(PDRIVER_OBJECT DriverObject, PUNICODE_STRING RegistryPath)
 {
@@ -33,6 +37,7 @@ DriverEntry(PDRIVER_OBJECT DriverObject, PUNICODE_STRING RegistryPath)
     TestVaList("aha", "aha", 123, "%d", 3);
     TestFPU();
     TestDiv();
+    TestInlineAsm();
     dprintf("end world!\n");
 
     return STATUS_VIRUS_INFECTED;

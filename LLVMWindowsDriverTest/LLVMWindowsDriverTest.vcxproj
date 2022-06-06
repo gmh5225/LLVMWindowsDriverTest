@@ -95,6 +95,7 @@
   <ItemGroup>
     <ClCompile Include="div_test.cpp" />
     <ClCompile Include="fpu_test.cpp" />
+    <ClCompile Include="inline_asm.cpp" />
     <ClCompile Include="log_test.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="self_intrin.cpp" />
