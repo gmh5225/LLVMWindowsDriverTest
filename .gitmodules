@@ -1,3 +1,0 @@
-[submodule "LLVMWindowsDriverTest/math-int_fastdiv"]
-	path = LLVMWindowsDriverTest/math-int_fastdiv
-	url = https://github.com/gmh5225/math-int_fastdiv
