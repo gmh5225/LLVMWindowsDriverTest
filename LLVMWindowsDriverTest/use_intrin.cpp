@@ -248,6 +248,13 @@ TestintrinByUseintrin()
         }
     }
 
+    // test invpcid
+    {
+        ULONG_PTR pcid = 0;
+        _invpcid(2, &pcid);
+        dprintf("_invpcid pcid=%p\n", pcid);
+    }
+
     // test inbytestring
     {
         ///* VMware I/O Port  */

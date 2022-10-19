@@ -6,19 +6,29 @@ DECLSPEC_NOINLINE
 ULONG64
 asm1()
 {
+#ifdef __clang__
     _asm {
         mov rax,1
-        ret
     }
+#else
+    return 0;
+#endif
 }
 
 DECLSPEC_NOINLINE
-__declspec(naked) ULONG64 asm2()
+#ifdef __clang__
+__declspec(naked)
+#endif
+    ULONG64 asm2()
 {
+#ifdef __clang__
     _asm {
         mov rax,2
         ret
     }
+#else
+    return 0;
+#endif
 }
 
 EXTERN_C

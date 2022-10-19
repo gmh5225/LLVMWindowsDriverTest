@@ -91,6 +91,10 @@ _enable(void);
 
 EXTERN_C
 void
+_invpcid(unsigned int type, void *descriptor);
+
+EXTERN_C
+void
 TestintrinBySelfintrin()
 {
     dprintf("----TestintrinBySelfintrin begin----\n");
@@ -329,6 +333,13 @@ TestintrinBySelfintrin()
             dprintf("__invlpg addr=%p\n", mem);
             ExFreePool(mem);
         }
+    }
+
+    // test invpcid
+    {
+        ULONG_PTR pcid = 0;
+        _invpcid(2, &pcid);
+        dprintf("_invpcid pcid=%p\n", pcid);
     }
 
     // test inbytestring

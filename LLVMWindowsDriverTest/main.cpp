@@ -26,6 +26,11 @@ EXTERN_C
 void
 TestInlineAsm();
 
+#ifndef __clang__
+EXTERN_C
+int _fltused = 0;
+#endif
+
 EXTERN_C
 NTSTATUS
 DriverEntry(PDRIVER_OBJECT DriverObject, PUNICODE_STRING RegistryPath)
