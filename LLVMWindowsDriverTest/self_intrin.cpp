@@ -223,16 +223,16 @@ TestintrinBySelfintrin()
     }
 
     // test stosb
-    //{
-    //    unsigned char c = 0x40; /* '@' character */
-    //    unsigned char s[] = "*********************************";
+    {
+        unsigned char c = 0x40; /* '@' character */
+        unsigned char s[] = "*********************************";
 
-    //    dprintf("%s\n", s);
-    //    __stosb((unsigned char *)s + 1, c, 6);
-    //    dprintf("%s\n", s);
-    //    //*********************************
-    //    //*@@@@@@**************************
-    //}
+        dprintf("%s\n", s);
+        __stosb((unsigned char *)s + 1, c, 6);
+        dprintf("%s\n", s);
+        //*********************************
+        //*@@@@@@**************************
+    }
 
     // test stosw
     {
