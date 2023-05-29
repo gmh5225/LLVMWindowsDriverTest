@@ -8,6 +8,10 @@ void __writecr2(ULONG_PTR);
 
 EXTERN_C
 void
+_sgdt(void *Destination);
+
+EXTERN_C
+void
 TestintrinByUseintrin()
 {
     dprintf("----TestintrinByUseintrin begin----\n");
@@ -314,6 +318,34 @@ TestintrinByUseintrin()
         Success!
         sl was changed
         */
+    }
+
+    // test wbinvd
+    {
+        dprintf("test wbinvd begin\n");
+        __wbinvd();
+        dprintf("test wbinvd end\n");
+    }
+
+    struct Idtr
+    {
+        unsigned short limit;
+        ULONG_PTR base;
+    };
+    // test sidt/lidt
+    {
+        Idtr IDT{};
+        __sidt(&IDT);
+        __lidt(&IDT);
+        dprintf("test sidt/lidt end\n");
+    }
+
+    // test gdtr
+    {
+        using Gdtr = Idtr;
+        Gdtr gdtr = {};
+        _sgdt(&gdtr);
+        dprintf("test _sgdt end\n");
     }
 
     dprintf("----TestintrinByUseintrin end----\n");

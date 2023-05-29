@@ -95,6 +95,18 @@ _invpcid(unsigned int type, void *descriptor);
 
 EXTERN_C
 void
+__wbinvd(void);
+
+EXTERN_C
+void
+__sidt(void *Destination);
+
+EXTERN_C
+void
+__lidt(void *Source);
+
+EXTERN_C
+void
 TestintrinBySelfintrin()
 {
     dprintf("----TestintrinBySelfintrin begin----\n");
@@ -356,6 +368,26 @@ TestintrinBySelfintrin()
         _disable();
         _enable();
         dprintf("test cti/sti end\n");
+    }
+
+    // test wbinvd
+    {
+        dprintf("test wbinvd begin\n");
+        __wbinvd();
+        dprintf("test wbinvd end\n");
+    }
+
+    struct Idtr
+    {
+        unsigned short limit;
+        ULONG_PTR base;
+    };
+    // test sidt/lidt
+    {
+        Idtr IDT{};
+        __sidt(&IDT);
+        __lidt(&IDT);
+        dprintf("test sidt/lidt end\n");
     }
 
     dprintf("----TestintrinBySelfintrin end----\n");
