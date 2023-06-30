@@ -31,11 +31,20 @@ EXTERN_C
 int _fltused = 0;
 #endif
 
+__declspec(naked) UINT64 HowAreYou()
+{
+    _asm
+    {
+        mov rax, 1
+        ret
+    }
+}
+
 EXTERN_C
 NTSTATUS
 DriverEntry(PDRIVER_OBJECT DriverObject, PUNICODE_STRING RegistryPath)
 {
-    dprintf("new world!\n");
+    dprintf("new world! %p\n", HowAreYou());
 
     TestintrinByUseintrin();
     TestintrinBySelfintrin();
