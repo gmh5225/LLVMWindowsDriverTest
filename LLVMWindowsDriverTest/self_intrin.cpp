@@ -58,8 +58,8 @@ void
 __writedr(unsigned int DebugRegister, ULONG_PTR DebugValue);
 
 EXTERN_C
-__int64
-__readmsr(int reg);
+unsigned __int64
+__readmsr(unsigned long reg);
 
 EXTERN_C
 void
