@@ -70,7 +70,7 @@ unsigned int
 _xbegin();
 
 EXTERN_C
-unsigned int
+void
 _xend();
 
 EXTERN_C

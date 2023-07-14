@@ -31,6 +31,7 @@ EXTERN_C
 int _fltused = 0;
 #endif
 
+#ifdef __clang__
 __declspec(naked) UINT64 HowAreYou()
 {
     _asm
@@ -39,6 +40,13 @@ __declspec(naked) UINT64 HowAreYou()
         ret
     }
 }
+#else
+UINT64
+HowAreYou()
+{
+    return 0;
+}
+#endif
 
 EXTERN_C
 NTSTATUS
