@@ -352,17 +352,18 @@ TestintrinByUseintrin()
         dprintf("test _sgdt end\n");
     }
 
-    /* __rdtsc();
-     __rdtscp(NULL);
-     __segmentlimit(123);
-     __invlpg((void *)0xaabbccddaabbccdd);
-     __sidt((void *)0xaabbccddaabbccdd);
-     __lidt((void *)0xaabbccddaabbccdd);
-     _sgdt((void *)0xaabbccddaabbccdd);
-     _xbegin();
-     _xend();
-     _xabort(0);
-     _xtest();
-     _invpcid(1, NULL);*/
+    /*  __rdtsc();
+      __rdtscp(NULL);
+      __segmentlimit(123);
+      __invlpg((void *)0xaabbccddaabbccdd);
+      __sidt((void *)0xaabbccddaabbccdd);
+      __lidt((void *)0xaabbccddaabbccdd);
+      _sgdt((void *)0xaabbccddaabbccdd);
+      _xbegin();
+      _xend();
+      _xabort(0);
+      _xtest();
+      _invpcid(1, NULL);*/
+
     dprintf("----TestintrinByUseintrin end----\n");
 }
