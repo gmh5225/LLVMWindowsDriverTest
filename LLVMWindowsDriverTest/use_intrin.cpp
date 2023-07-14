@@ -197,7 +197,7 @@ TestintrinByUseintrin()
 
     // test readtscp
     {
-        unsigned int aux;
+        unsigned int aux = 1;
         auto tickcount = __rdtscp(&aux);
         dprintf("aux:0x%x\n", aux);
         dprintf("tickcount:%I64x\n", tickcount);
@@ -209,6 +209,7 @@ TestintrinByUseintrin()
         __try
         {
             auto PortRead = __inbyte(5658);
+            __outbyte(5658, PortRead);
             dprintf("inbyte:%x\n", PortRead);
         }
         __except (1)
@@ -223,6 +224,7 @@ TestintrinByUseintrin()
         __try
         {
             auto PortRead = __inword(5658);
+            __outword(5658, PortRead);
             dprintf("inword:%x\n", PortRead);
         }
         __except (1)
@@ -237,6 +239,7 @@ TestintrinByUseintrin()
         __try
         {
             auto PortRead = __indword(5658);
+            __outdword(5658, PortRead);
             dprintf("indword:%x\n", PortRead);
         }
         __except (1)
@@ -258,7 +261,7 @@ TestintrinByUseintrin()
 
     // test invpcid
     {
-        ULONG_PTR pcid = 0;
+        ULONG_PTR pcid = 11;
         _invpcid(2, &pcid);
         dprintf("_invpcid pcid=%p\n", pcid);
     }
@@ -352,6 +355,9 @@ TestintrinByUseintrin()
         dprintf("test _sgdt end\n");
     }
 
+    //__MACHINEX86_X64(unsigned __int64 __rdtscp(unsigned int *))
+    //__rdtscp()
+    //__rdpmc(0);
     /*  __rdtsc();
       __rdtscp(NULL);
       __segmentlimit(123);
