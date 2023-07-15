@@ -55,7 +55,7 @@ __readdr(unsigned int DebugRegister);
 
 EXTERN_C
 void
-__writedr(unsigned int DebugRegister, ULONG_PTR DebugValue);
+__writedr(unsigned int DebugRegister, unsigned __int64 DebugValue);
 
 EXTERN_C
 unsigned __int64
