@@ -271,7 +271,26 @@ TestintrinByUseintrin()
         ///* VMware I/O Port  */
         char buf[100] = {0};
         __inbytestring(5658, (PUCHAR)buf, sizeof(buf));
-        dprintf("buf=%s\n", buf);
+        __outbytestring(5658, (PUCHAR)buf, sizeof(buf));
+        dprintf("buf1=%s\n", buf);
+    }
+
+    // test __inwordstring
+    {
+        ///* VMware I/O Port  */
+        unsigned short buf = 2;
+        __inwordstring(5658, &buf, sizeof(buf));
+        __outwordstring(5658, &buf, sizeof(buf));
+        dprintf("buf2=%d\n", buf);
+    }
+
+    // test __indwordstring
+    {
+        ///* VMware I/O Port  */
+        unsigned long buf = 2;
+        __indwordstring(5658, &buf, sizeof(buf));
+        __outdwordstring(5658, &buf, sizeof(buf));
+        dprintf("buf3=%d\n", buf);
     }
 
     // test cti/sti
