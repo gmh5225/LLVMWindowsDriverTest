@@ -78,6 +78,7 @@
       <ControlFlowGuard>false</ControlFlowGuard>
       <TreatWarningAsError>false</TreatWarningAsError>
       <Optimization>Full</Optimization>
+      <AdditionalOptions>-fauto-generate-ir %(AdditionalOptions)</AdditionalOptions>
     </ClCompile>
     <Link>
       <EntryPointSymbol>DriverEntry</EntryPointSymbol>

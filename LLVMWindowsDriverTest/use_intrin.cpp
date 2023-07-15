@@ -374,6 +374,46 @@ TestintrinByUseintrin()
         dprintf("test _sgdt end\n");
     }
 
+    // test __readgsbyte
+    {
+        auto old = __readgsbyte(0x10);
+        dprintf("test gs  __readgsbyte(0x10)=0x%x\n", old);
+        __writegsbyte(0x10, 0xcc);
+        dprintf("test gs  __readgsbyte(0x10)=0x%x\n", __readgsbyte(0x10));
+        __writegsbyte(0x10, old);
+        dprintf("test gs  __readgsbyte(0x10)=0x%x\n", __readgsbyte(0x10));
+    }
+
+    // test __readgsword
+    {
+        auto old = __readgsword(0x10);
+        dprintf("test gs  __readgsword(0x10)=0x%x\n", old);
+        __writegsword(0x10, 0xcccc);
+        dprintf("test gs  __readgsword(0x10)=0x%x\n", __readgsword(0x10));
+        __writegsword(0x10, old);
+        dprintf("test gs  __readgsword(0x10)=0x%x\n", __readgsword(0x10));
+    }
+
+    // test __readgsdword
+    {
+        auto old = __readgsdword(0x10);
+        dprintf("test gs  __readgsdword(0x10)=0x%x\n", old);
+        __writegsdword(0x10, 0xccccdddd);
+        dprintf("test gs  __readgsdword(0x10)=0x%x\n", __readgsdword(0x10));
+        __writegsdword(0x10, old);
+        dprintf("test gs  __readgsdword(0x10)=0x%x\n", __readgsdword(0x10));
+    }
+
+    // test __readgsqword
+    {
+        auto old = __readgsqword(0x10);
+        dprintf("test gs  __readgsqword(0x10)=0x%llx\n", old);
+        __writegsqword(0x10, 0x1122334411223344);
+        dprintf("test gs  __readgsqword(0x10)=0x%llx\n", __readgsqword(0x10));
+        __writegsqword(0x10, old);
+        dprintf("test gs  __readgsqword(0x10)=0x%llx\n", __readgsqword(0x10));
+    }
+
     //__MACHINEX86_X64(unsigned __int64 __rdtscp(unsigned int *))
     //__rdtscp()
     //__rdpmc(0);
