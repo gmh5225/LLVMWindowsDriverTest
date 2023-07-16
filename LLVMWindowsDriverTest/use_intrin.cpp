@@ -379,6 +379,8 @@ TestintrinByUseintrin()
         auto old = __readgsbyte(0x10);
         dprintf("test gs  __readgsbyte(0x10)=0x%x\n", old);
         __writegsbyte(0x10, 0xcc);
+        __incgsbyte(0x10);
+        __addgsbyte(0x10, 1);
         dprintf("test gs  __readgsbyte(0x10)=0x%x\n", __readgsbyte(0x10));
         __writegsbyte(0x10, old);
         dprintf("test gs  __readgsbyte(0x10)=0x%x\n", __readgsbyte(0x10));
@@ -389,6 +391,8 @@ TestintrinByUseintrin()
         auto old = __readgsword(0x10);
         dprintf("test gs  __readgsword(0x10)=0x%x\n", old);
         __writegsword(0x10, 0xcccc);
+        __incgsword(0x10);
+        __addgsword(0x10, 1);
         dprintf("test gs  __readgsword(0x10)=0x%x\n", __readgsword(0x10));
         __writegsword(0x10, old);
         dprintf("test gs  __readgsword(0x10)=0x%x\n", __readgsword(0x10));
@@ -399,6 +403,8 @@ TestintrinByUseintrin()
         auto old = __readgsdword(0x10);
         dprintf("test gs  __readgsdword(0x10)=0x%x\n", old);
         __writegsdword(0x10, 0xccccdddd);
+        __incgsdword(0x10);
+        __addgsdword(0x10, 1);
         dprintf("test gs  __readgsdword(0x10)=0x%x\n", __readgsdword(0x10));
         __writegsdword(0x10, old);
         dprintf("test gs  __readgsdword(0x10)=0x%x\n", __readgsdword(0x10));
@@ -409,6 +415,8 @@ TestintrinByUseintrin()
         auto old = __readgsqword(0x10);
         dprintf("test gs  __readgsqword(0x10)=0x%llx\n", old);
         __writegsqword(0x10, 0x1122334411223344);
+        __incgsqword(0x10);
+        __addgsqword(0x10, 1);
         dprintf("test gs  __readgsqword(0x10)=0x%llx\n", __readgsqword(0x10));
         __writegsqword(0x10, old);
         dprintf("test gs  __readgsqword(0x10)=0x%llx\n", __readgsqword(0x10));
