@@ -323,6 +323,11 @@ TestintrinByUseintrin()
         sl = __segmentlimit(KGDT_R3_DATA + RPL_MASK);
 
         eflags = __readeflags();
+        dprintf("eflags=%p\n", eflags);
+        __writeeflags(eflags & ~EFLAGS_ZF);
+        auto eflags2 = __readeflags();
+        __writeeflags(eflags);
+        dprintf("eflags2=%p\n", eflags2);
 
         dprintf(
             "After: segment limit =0x%x eflags =0x%x eflags.zf = %s\n",

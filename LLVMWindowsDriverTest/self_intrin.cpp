@@ -106,6 +106,14 @@ void
 __lidt(void *Source);
 
 EXTERN_C
+unsigned __int64
+__readeflags(void);
+
+EXTERN_C
+void
+__writeeflags(unsigned __int64);
+
+EXTERN_C
 void
 TestintrinBySelfintrin()
 {
@@ -371,6 +379,56 @@ TestintrinBySelfintrin()
         _disable();
         _enable();
         dprintf("test cti/sti end\n");
+    }
+
+    // test lsl
+    {
+        dprintf("test lsl begin\n");
+
+#define EFLAGS_ZF 0x00000040
+#define KGDT_R3_DATA 0x0020
+#define RPL_MASK 0x3
+
+#ifdef _M_IX86
+        typedef unsigned int READETYPE;
+#else
+        typedef unsigned __int64 READETYPE;
+#endif
+
+        const unsigned long initsl = 0xbaadbabe;
+        READETYPE eflags = 0;
+        unsigned long sl = initsl;
+
+        dprintf("Before: segment limit =0x%x eflags =0x%x\n", sl, eflags);
+        sl = __segmentlimit(KGDT_R3_DATA + RPL_MASK);
+
+        eflags = __readeflags();
+        dprintf("eflags=%p\n", eflags);
+        __writeeflags(eflags & ~EFLAGS_ZF);
+        auto eflags2 = __readeflags();
+        __writeeflags(eflags);
+        dprintf("eflags2=%p\n", eflags2);
+
+        dprintf(
+            "After: segment limit =0x%x eflags =0x%x eflags.zf = %s\n",
+            sl,
+            eflags,
+            (eflags & EFLAGS_ZF) ? "set" : "clear");
+
+        // If ZF is set, the call to lsl succeeded; if ZF is clear, the call failed.
+        dprintf("%s\n", eflags & EFLAGS_ZF ? "Success!" : "Fail!");
+
+        // You can verify the value of sl to make sure that the instruction wrote to it
+        dprintf("sl was %s\n", (sl == initsl) ? "unchanged" : "changed");
+
+        dprintf("test lsl end\n");
+
+        /*
+        Before: segment limit =0xbaadbabe eflags =0x0
+        After: segment limit =0xffffffff eflags =0x256 eflags.zf = set
+        Success!
+        sl was changed
+        */
     }
 
     // test wbinvd
