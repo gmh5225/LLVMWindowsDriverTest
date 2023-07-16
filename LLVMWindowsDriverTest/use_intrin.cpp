@@ -358,6 +358,11 @@ TestintrinByUseintrin()
         dprintf("test wbinvd end\n");
     }
 
+    {
+        auto eflags = __readeflags();
+        dprintf("eflags 3389 =%p\n", eflags);
+    }
+
     struct Idtr
     {
         unsigned short limit;
@@ -371,12 +376,22 @@ TestintrinByUseintrin()
         dprintf("test sidt/lidt end\n");
     }
 
+    {
+        auto eflags = __readeflags();
+        dprintf("eflags 007 =%p\n", eflags);
+    }
+
     // test gdtr
     {
         using Gdtr = Idtr;
         Gdtr gdtr = {};
         _sgdt(&gdtr);
         dprintf("test _sgdt end\n");
+    }
+
+    {
+        auto eflags = __readeflags();
+        dprintf("eflags 996 =%p\n", eflags);
     }
 
     // test __readgsbyte
@@ -391,6 +406,11 @@ TestintrinByUseintrin()
         dprintf("test gs  __readgsbyte(0x10)=0x%x\n", __readgsbyte(0x10));
     }
 
+    {
+        auto eflags = __readeflags();
+        dprintf("eflags 997 =%p\n", eflags);
+    }
+
     // test __readgsword
     {
         auto old = __readgsword(0x10);
@@ -401,6 +421,11 @@ TestintrinByUseintrin()
         dprintf("test gs  __readgsword(0x10)=0x%x\n", __readgsword(0x10));
         __writegsword(0x10, old);
         dprintf("test gs  __readgsword(0x10)=0x%x\n", __readgsword(0x10));
+    }
+
+    {
+        auto eflags = __readeflags();
+        dprintf("eflags 998 =%p\n", eflags);
     }
 
     // test __readgsdword
@@ -415,6 +440,11 @@ TestintrinByUseintrin()
         dprintf("test gs  __readgsdword(0x10)=0x%x\n", __readgsdword(0x10));
     }
 
+    {
+        auto eflags = __readeflags();
+        dprintf("eflags 999 =%p\n", eflags);
+    }
+
     // test __readgsqword
     {
         auto old = __readgsqword(0x10);
@@ -425,6 +455,11 @@ TestintrinByUseintrin()
         dprintf("test gs  __readgsqword(0x10)=0x%llx\n", __readgsqword(0x10));
         __writegsqword(0x10, old);
         dprintf("test gs  __readgsqword(0x10)=0x%llx\n", __readgsqword(0x10));
+    }
+
+    {
+        auto eflags = __readeflags();
+        dprintf("eflags 1010 =%p\n", eflags);
     }
 
     //__MACHINEX86_X64(unsigned __int64 __rdtscp(unsigned int *))

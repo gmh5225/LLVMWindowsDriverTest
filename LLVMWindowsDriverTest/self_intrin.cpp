@@ -118,6 +118,12 @@ void
 TestintrinBySelfintrin()
 {
     dprintf("----TestintrinBySelfintrin begin----\n");
+
+    {
+        auto eflags = __readeflags();
+        dprintf("eflags 1 =%p\n", eflags);
+    }
+
     // test cr0
     {
         auto cr0 = __readcr0();
@@ -276,6 +282,11 @@ TestintrinBySelfintrin()
         // 0 99999 99999 0
     }
 
+    {
+        auto eflags = __readeflags();
+        dprintf("eflags 1101 =%p\n", eflags);
+    }
+
 #ifdef _WIN64
     // test stosq
     {
@@ -288,10 +299,20 @@ TestintrinBySelfintrin()
     }
 #endif
 
+    {
+        auto eflags = __readeflags();
+        dprintf("eflags 117 =%p\n", eflags);
+    }
+
     // test readpmc
     {
         auto pmc0 = __readpmc(0);
         dprintf("pmc0:%I64x\n", pmc0);
+    }
+
+    {
+        auto eflags = __readeflags();
+        dprintf("eflags 118 =%p\n", eflags);
     }
 
     // test readtscp
@@ -300,6 +321,11 @@ TestintrinBySelfintrin()
         auto tickcount = __rdtscp(&aux);
         dprintf("aux:%x\n", aux);
         dprintf("tickcount:%I64x\n", tickcount);
+    }
+
+    {
+        auto eflags = __readeflags();
+        dprintf("eflags 001 =%p\n", eflags);
     }
 
     // test inbyte
@@ -356,6 +382,11 @@ TestintrinBySelfintrin()
             dprintf("__invlpg addr=%p\n", mem);
             ExFreePool(mem);
         }
+    }
+
+    {
+        auto eflags = __readeflags();
+        dprintf("eflags 111 =%p\n", eflags);
     }
 
     // test invpcid
