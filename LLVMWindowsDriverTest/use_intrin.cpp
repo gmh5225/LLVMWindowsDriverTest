@@ -477,6 +477,8 @@ TestintrinByUseintrin()
       _xabort(0);
       _xtest();
       _invpcid(1, NULL);*/
+    // auto vmwrite_ret = __vmx_vmwrite(0x12, 0x34);
+    // dprintf("vmwrite_ret=%d\n", vmwrite_ret);
 
     dprintf("----TestintrinByUseintrin end----\n");
 }
