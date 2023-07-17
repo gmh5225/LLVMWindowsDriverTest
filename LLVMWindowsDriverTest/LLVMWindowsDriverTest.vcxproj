@@ -83,6 +83,7 @@
     <Link>
       <EntryPointSymbol>DriverEntry</EntryPointSymbol>
       <TreatLinkerWarningAsErrors>false</TreatLinkerWarningAsErrors>
+      <AdditionalDependencies>bufferoverflowK.lib;libcntpr.lib;wdm.lib;wdmsec.lib;aux_klib.lib;Ntstrsafe.lib;Netio.lib;tdi.lib;fltMgr.lib;Ntoskrnl.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">
