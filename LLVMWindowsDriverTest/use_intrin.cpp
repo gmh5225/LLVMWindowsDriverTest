@@ -480,5 +480,21 @@ TestintrinByUseintrin()
     // auto vmwrite_ret = __vmx_vmwrite(0x12, 0x34);
     // dprintf("vmwrite_ret=%d\n", vmwrite_ret);
 
+    /* size_t xx = 0xc1;
+     auto ret = __vmx_vmread(0x10, &xx);
+     dprintf("__vmx_vmread  ret =%d\n", ret);*/
+
+    /*auto ret = __vmx_vmlaunch();
+    dprintf("__vmx_vmlaunch  ret =%d\n", ret);*/
+    /*ULONG64 VmcsPhysicalAddress = 0x12345678;
+    __vmx_vmptrst(&VmcsPhysicalAddress);*/
+
+    /* auto ret = __vmx_vmresume();
+     dprintf("__vmx_vmresume  ret =%d\n", ret);*/
+
+    /*ULONG64 VmxonRegionPhysicalAddress = 0x12345678;
+    auto ret = __vmx_on(&VmxonRegionPhysicalAddress);
+    dprintf("__vmx_on  ret =%d\n", ret);*/
+
     dprintf("----TestintrinByUseintrin end----\n");
 }
