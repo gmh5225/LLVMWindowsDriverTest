@@ -14,6 +14,14 @@ EXTERN_C
 unsigned char
 _xtest(void);
 
+// UCHAR
+//__vmx_vmreadxx(size_t field, size_t *value)
+//{
+//     UCHAR error;
+//     __asm __volatile("vmread %2, %0; setna %1" : "=r"(*value), "=qm"(error) : "r"(field) : "cc");
+//     return error;
+// }
+
 EXTERN_C
 void
 TestintrinByUseintrin()
@@ -495,6 +503,22 @@ TestintrinByUseintrin()
     /*ULONG64 VmxonRegionPhysicalAddress = 0x12345678;
     auto ret = __vmx_on(&VmxonRegionPhysicalAddress);
     dprintf("__vmx_on  ret =%d\n", ret);*/
+    /* size_t ErrorCode = 0;
+     __vmx_vmread(0x00004406, &ErrorCode);
+     __vmx_vmwrite(0x00004405, ErrorCode);
 
+     dprintf("----xxxxx----\n");*/
+
+    /*size_t ErrorCodexx = 0;
+    __vmx_vmreadxx(0x00004407, &ErrorCodexx);
+    __vmx_vmwrite(0x00004409, ErrorCodexx);*/
+    //__writemsr(0xC0000082, __readmsr(0xC0000082));
+    /* PHYSICAL_ADDRESS VmcsPhysicalAddr;
+     VmcsPhysicalAddr.QuadPart = 0;
+     __vmx_vmptrst((unsigned __int64 *)&VmcsPhysicalAddr);
+     __vmx_vmptrld((unsigned __int64 *)&VmcsPhysicalAddr);
+     dprintf("Vmptrst result : %llx", VmcsPhysicalAddr);
+     __vmx_vmclear((unsigned __int64 *)&VmcsPhysicalAddr);
+     __vmx_on((unsigned __int64 *)&VmcsPhysicalAddr);*/
     dprintf("----TestintrinByUseintrin end----\n");
 }
